@@ -45,3 +45,10 @@ group :development do
   gem 'spring'
 end
 
+
+# Deployment tools
+group :development do
+  gem "puppet"
+  gem "librarian-puppet"
+  gem "capistrano"
+end
