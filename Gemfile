@@ -51,4 +51,5 @@ group :development do
   gem "puppet"
   gem "librarian-puppet"
   gem "capistrano"
+  gem 'capistrano-rails'
 end
