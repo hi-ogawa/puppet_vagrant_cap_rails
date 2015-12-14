@@ -52,6 +52,8 @@ GEM
     capistrano-rails (1.1.5)
       capistrano (~> 3.1)
       capistrano-bundler (~> 1.1)
+    capistrano-upload-config (0.6.0)
+      capistrano (>= 3.0)
     coderay (1.1.0)
     coffee-rails (4.1.0)
       coffee-script (>= 2.2.0)
@@ -204,6 +206,7 @@ DEPENDENCIES
   byebug
   capistrano
   capistrano-rails
+  capistrano-upload-config
   coffee-rails (~> 4.1.0)
   jbuilder (~> 2.0)
   jquery-rails

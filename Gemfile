@@ -56,4 +56,5 @@ group :development do
   gem "librarian-puppet"
   gem "capistrano"
   gem "capistrano-rails"
+  gem "capistrano-upload-config"
 end
