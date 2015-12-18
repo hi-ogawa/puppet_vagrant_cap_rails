@@ -57,4 +57,5 @@ group :development do
   gem "capistrano"
   gem "capistrano-rails"
   gem "capistrano-upload-config"
+  gem 'capistrano-passenger'
 end
