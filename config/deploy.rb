@@ -44,6 +44,9 @@ before 'deploy:check:linked_files', 'config:push'
 set :rvm_type, :auto
 set :rvm_ruby_version, :default
 
+# capistrano passenger stand-alone mode
+set :passenger_in_gemfile, true
+
 namespace :deploy do
 
   after :restart, :clear_cache do
