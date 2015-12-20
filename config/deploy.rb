@@ -60,6 +60,17 @@ namespace :deploy do
 
 end
 
+namespace :passenger do
+  desc "start passenger for the first time"
+  task :start do
+    on roles(fetch(:passenger_roles)), in: fetch(:passenger_restart_runner), wait: fetch(:passenger_restart_wait), limit: fetch(:passenger_restart_limit) do
+      within(release_path) do
+        execute :passenger, "start -e #{fetch(:stage)} -d"
+      end
+    end
+  end
+end
+
 desc "Check that we can access everything"
 task :check_write_permissions do
   on roles(:all) do |host|
