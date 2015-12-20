@@ -116,6 +116,9 @@ GEM
     net-ssh (3.0.1)
     nokogiri (1.6.7)
       mini_portile2 (~> 2.0.0.rc2)
+    passenger (5.0.15)
+      rack
+      rake (>= 0.8.1)
     pg (0.18.4)
     pry (0.10.3)
       coderay (~> 1.1.0)
@@ -218,6 +221,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   librarian-puppet
+  passenger
   pg
   pry
   pry-byebug
