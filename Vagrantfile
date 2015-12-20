@@ -6,13 +6,32 @@
 # backwards compatibility). Please don't change it unless you know what
 # you're doing.
 Vagrant.configure(2) do |config|
+
+  config.vm.box = "ubuntu/trusty64"
+
+  config.vm.define "staging" do |staging|
+
+    # NOTE: ip address will be shown at the entry `eth1: inet addr` of `ifconfig`.
+    staging.vm.network "private_network", type: "dhcp"
+
+    # NOTE: hieradata directoy can be specified only by absolute path.
+    staging.vm.synced_folder "puppet/hieradata", "/hieradata"
+    staging.vm.provision "puppet" do |puppet|
+      puppet.manifests_path = "puppet/manifests"
+      puppet.manifest_file = "staging.pp"
+      puppet.options = ["--verbose"]
+      puppet.module_path = "puppet/modules"
+      puppet.hiera_config_path = "puppet/hiera.yaml"
+    end
+  end
+
   # The most common configuration options are documented and commented below.
   # For a complete reference, please see the online documentation at
   # https://docs.vagrantup.com.
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
-  config.vm.box = "ubuntu/trusty64"
+  # config.vm.box = "ubuntu/trusty64"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs

@@ -3,8 +3,25 @@
 
 forge "https://forgeapi.puppetlabs.com"
 
+mod 'puppetlabs-apt'
+mod 'puppetlabs-stdlib'
+mod 'puppetlabs-git'
+
+mod 'jfryman/nginx'
+mod 'puppetlabs-postgresql'
+mod 'maestrodev/rvm'
+mod 'puppetlabs-nodejs'
+mod 'echoes-monit'
+
+# NOTE: this module has an issue: https://github.com/puppet-community/puppet-nodejs/issues/149
+# mod 'puppetlabs-nodejs'
+
+
+
+
+
 # use dependencies defined in metadata.json
-metadata
+# metadata
 
 # use dependencies defined in Modulefile
 # modulefile
