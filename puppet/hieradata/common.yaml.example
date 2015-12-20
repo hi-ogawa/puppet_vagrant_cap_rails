@@ -2,3 +2,7 @@
 user:
   name: deployman
   password: easypassword
+pubkeys: |
+  key0
+  key1
+  key2

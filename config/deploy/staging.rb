@@ -1,3 +1,9 @@
+set :server_dest, ENV["ON_VAGRANT"] || 'ec2-52-193-53-193.ap-northeast-1.compute.amazonaws.com'
+
+server fetch(:server_dest), user: "ubuntu", roles: %w{app db web}
+
+set :ssh_options, forward_agent: true
+
 # server-based syntax
 # ======================
 # Defines a single server with a list of roles and multiple properties.
@@ -7,9 +13,7 @@
 # server 'example.com', user: 'deploy', roles: %w{app web}, other_property: :other_value
 # server 'db.example.com', user: 'deploy', roles: %w{db}
 
-server 'ec2-52-193-53-193.ap-northeast-1.compute.amazonaws.com',
-       user: "ubuntu",
-       roles: %w{app db web}
+
 
 # role-based syntax
 # ==================
@@ -61,5 +65,3 @@ server 'ec2-52-193-53-193.ap-northeast-1.compute.amazonaws.com',
 #     auth_methods: %w(publickey password)
 #     # password: 'please use keys'
 #   }
-
-set :ssh_options, forward_agent: true
