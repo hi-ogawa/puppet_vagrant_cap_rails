@@ -51,6 +51,11 @@ class { 'postgresql::server':
   postgres_password => 'postgres'
 }
 
+postgresql::server::db { 'puppet_vagrant_cap_rails_staging':
+  user     => 'puppet_vagrant_cap_rails',
+  password => postgresql_password('puppet_vagrant_cap_rails', hiera('postgres-password')),
+}
+
 class {'git': }
 package { 'nodejs':
   ensure => installed
