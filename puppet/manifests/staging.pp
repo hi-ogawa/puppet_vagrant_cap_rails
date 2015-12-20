@@ -56,6 +56,10 @@ package { 'nodejs':
   ensure => installed
 }
 
+package { ['postgresql-contrib', 'libpq-dev']:
+  ensure => installed
+}
+
 # ruby
 class { '::rvm': }
 rvm::system_user { $user['name']: ; }
@@ -69,5 +73,12 @@ rvm_gem {
     name         => 'bundler',
     ruby_version => 'ruby-2.1.3',
     ensure       => '1.10.6',
+    require      => [Rvm_system_ruby['ruby-2.1.3']];
+}
+rvm_gem {
+  'pg':
+    name         => 'pg',
+    ruby_version => 'ruby-2.1.3',
+    ensure       => '0.18.4',
     require      => [Rvm_system_ruby['ruby-2.1.3']];
 }

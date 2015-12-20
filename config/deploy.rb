@@ -40,6 +40,10 @@ set :config_example_suffix, '.example'
 
 before 'deploy:check:linked_files', 'config:push'
 
+# capistrano-rvm
+set :rvm_type, :auto
+set :rvm_ruby_version, :default
+
 namespace :deploy do
 
   after :restart, :clear_cache do
