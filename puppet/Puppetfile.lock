@@ -1,13 +1,7 @@
 FORGE
   remote: https://forgeapi.puppetlabs.com
   specs:
-    echoes-monit (1.0.0)
-      puppetlabs-stdlib (>= 1.0.0)
     golja-gnupg (1.2.1)
-    jfryman-nginx (0.2.7)
-      puppetlabs-apt (< 3.0.0, >= 1.8.0)
-      puppetlabs-concat (< 2.0.0, >= 1.1.1)
-      puppetlabs-stdlib (< 5.0.0, >= 4.2.0)
     maestrodev-rvm (1.12.1)
       golja-gnupg (>= 1.2.0)
       puppetlabs-stdlib (>= 4.2.0)
@@ -17,8 +11,6 @@ FORGE
       puppetlabs-stdlib (< 5.0.0, >= 3.2.0)
     puppetlabs-git (0.4.0)
       puppetlabs-stdlib (>= 3.2.0)
-    puppetlabs-nodejs (0.8.0)
-      puppetlabs-stdlib (< 5.0.0, >= 2.2.1)
     puppetlabs-postgresql (4.6.1)
       puppetlabs-apt (< 3.0.0, >= 1.8.0)
       puppetlabs-concat (< 2.0.0, >= 1.1.0)
@@ -26,12 +18,9 @@ FORGE
     puppetlabs-stdlib (4.9.1)
 
 DEPENDENCIES
-  echoes-monit (>= 0)
-  jfryman-nginx (>= 0)
   maestrodev-rvm (>= 0)
   puppetlabs-apt (>= 0)
   puppetlabs-git (>= 0)
-  puppetlabs-nodejs (>= 0)
   puppetlabs-postgresql (>= 0)
   puppetlabs-stdlib (>= 0)
 
