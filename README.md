@@ -15,7 +15,7 @@ and those system stack:
 
 ### Run staging rails app in Vagrant
 
-__Files to set up manually_
+__Files to set up manually__
 
 - config/database.staging.yml
 - config/secrets.staging.yml
