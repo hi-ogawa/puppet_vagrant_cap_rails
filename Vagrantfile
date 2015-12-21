@@ -15,8 +15,9 @@ Vagrant.configure(2) do |config|
     # staging.vm.network "private_network", type: "dhcp"
     staging.vm.network "private_network", ip: "192.168.50.4"
 
-    # NOTE: hieradata directoy can be specified only by absolute path.
-    staging.vm.synced_folder "puppet/hieradata", "/hieradata"
+    # NOTE: hieradata/files directoy can be specified only by absolute path.
+    staging.vm.synced_folder "puppet/hieradata", "/etc/puppet/hieradata"
+    staging.vm.synced_folder "puppet/files", "/etc/puppet/files"
     staging.vm.provision "puppet" do |puppet|
       puppet.manifests_path = "puppet/manifests"
       puppet.manifest_file = "staging.pp"

@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # https://www.phusionpassenger.com/library/walkthroughs/deploy/ruby/ownserver/nginx/oss/trusty/install_passenger.html#step-1:-install-passenger-packages
 
 # Install our PGP key and add HTTPS support for APT

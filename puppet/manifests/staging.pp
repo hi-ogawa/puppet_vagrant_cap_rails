@@ -37,33 +37,29 @@ file_line { 'sudo_rule_nopw':
 
 class passenger_nginx {
 
-  # run shell script
-  # https://ask.puppetlabs.com/question/13844/how-to-deploy-bash-scripts-using-puppet/
   file { 'install_script':
     ensure => 'file',
-    source => 'puppet:///passenger_nginx_configs/install.sh',
-    path => '/usr/local/bin/my_passenger_nginx_install_script.sh',
-    owner => 'root',
-    group => 'root',
-    mode  => '0744',
-    notify => Exec['run_install_script'],
+    source => 'file:///etc/puppet/files/nginx_passenger/install.sh',
+    path => '/usr/local/bin/my_nginx_passenger_install.sh',
+    mode  => '744',
+    notify => Exec['run_install_script']
   }
   exec { 'run_install_script':
-    command => '/usr/local/bin/my_passenger_nginx_install_script.sh',
+    command => '/usr/local/bin/my_nginx_passenger_install.sh',
     refreshonly => true,
     notify => [File['nginx_conf'], File['myapp_conf']]
   }
 
   file { 'nginx_conf':
     ensure => present,
-    source => 'puppet:///passenger_nginx_configs/etc_nginx_nginx.conf',
+    source => 'file:///etc/puppet/files/nginx_passenger/etc_nginx_nginx.conf',
     path => '/etc/nginx/nginx.conf'
   }
 
   file { 'myapp_conf':
     ensure => present,
-    source => 'puppet:///passenger_nginx_configs/etc_nginx_sites_enabled_myapp.staging.conf',
-    path => '/etc/nginx/sites_enabled/myapp.conf'
+    source => 'file:///etc/puppet/files/nginx_passenger/etc_nginx_sites_enabled_myapp.conf',
+    path => '/etc/nginx/sites-enabled/myapp.conf'
   }
 }
 
@@ -115,5 +111,5 @@ rvm_gem {
     name         => 'pg',
     ruby_version => 'ruby-2.1.3',
     ensure       => '0.18.4',
-    require      => [Rvm_system_ruby['ruby-2.1.3']];
+    require      => [Rvm_system_ruby['ruby-2.1.3'], Package['postgresql-contrib'], Package['libpq-dev']];
 }

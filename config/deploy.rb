@@ -44,9 +44,6 @@ before 'deploy:check:linked_files', 'config:push'
 set :rvm_type, :auto
 set :rvm_ruby_version, :default
 
-# capistrano passenger stand-alone mode
-set :passenger_in_gemfile, true
-
 namespace :deploy do
 
   after :restart, :clear_cache do
@@ -58,14 +55,14 @@ namespace :deploy do
     end
   end
 
-  desk "restart passenger integrated with nginx"
+  desc "restart passenger integrated with nginx"
   task :passenger_nginx_restart do
     on roles(:web) do
       execute :sudo, "service nginx restart"
     end
   end
 
-  after :restart, :passenger_nginx_restart
+  after :finished, :passenger_nginx_restart
 end
 
 namespace :passenger do
