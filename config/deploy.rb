@@ -58,6 +58,14 @@ namespace :deploy do
     end
   end
 
+  desk "restart passenger integrated with nginx"
+  task :passenger_nginx_restart do
+    on roles(:web) do
+      execute :sudo, "service nginx restart"
+    end
+  end
+
+  after :restart, :passenger_nginx_restart
 end
 
 namespace :passenger do

@@ -35,9 +35,39 @@ file_line { 'sudo_rule_nopw':
 }
 
 
-## install/run packages
+class passenger_nginx {
 
-class { 'nginx': }
+  # run shell script
+  # https://ask.puppetlabs.com/question/13844/how-to-deploy-bash-scripts-using-puppet/
+  file { 'install_script':
+    ensure => 'file',
+    source => 'puppet:///passenger_nginx_configs/install.sh',
+    path => '/usr/local/bin/my_passenger_nginx_install_script.sh',
+    owner => 'root',
+    group => 'root',
+    mode  => '0744',
+    notify => Exec['run_install_script'],
+  }
+  exec { 'run_install_script':
+    command => '/usr/local/bin/my_passenger_nginx_install_script.sh',
+    refreshonly => true,
+    notify => [File['nginx_conf'], File['myapp_conf']]
+  }
+
+  file { 'nginx_conf':
+    ensure => present,
+    source => 'puppet:///passenger_nginx_configs/etc_nginx_nginx.conf',
+    path => '/etc/nginx/nginx.conf'
+  }
+
+  file { 'myapp_conf':
+    ensure => present,
+    source => 'puppet:///passenger_nginx_configs/etc_nginx_sites_enabled_myapp.staging.conf',
+    path => '/etc/nginx/sites_enabled/myapp.conf'
+  }
+}
+
+class { 'passenger_nginx': }
 
 class { 'postgresql::server':
   ip_mask_deny_postgres_user => '0.0.0.0/32',
